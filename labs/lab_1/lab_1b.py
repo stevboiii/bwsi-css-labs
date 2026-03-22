@@ -84,6 +84,42 @@ def main():
     result = simple_calculator(operation, num1, num2)
     print(f"The result of {operation}ing {num1} and {num2} is: {result}")
 
+def test_addition():
+    assert simple_calculator("add", 2, 3) == 5      #test for positive numbers
+    assert simple_calculator("add", -2, -3) == -5   #test for negative numbers
+    assert simple_calculator("add", 2.5, 3.5) == 6  #test for floating point numbers
+    assert simple_calculator("add", 0, 0) == 0      #test for zero
+
+def test_subtraction():
+    assert simple_calculator("subtract", 5, 3) == 2      #test for positive numbers
+    assert simple_calculator("subtract", -5, -3) == -2   #test for negative numbers
+    assert simple_calculator("subtract", 5.5, 3.5) == 2  #test for floating point numbers
+    assert simple_calculator("subtract", 0, 0) == 0      #test for zero
+
+def test_multiplication():
+    assert simple_calculator("multiply", 2, 3) == 6      #test for positive numbers
+    assert simple_calculator("multiply", -2, -3) == 6   #test for negative numbers
+    assert simple_calculator("multiply", 2.5, 3.5) == 8.75  #test for floating point numbers
+    assert simple_calculator("multiply", 0, 0) == 0      #test for zero
+
+def test_division():
+    assert simple_calculator("divide", 6, 3) == 2      #test for positive numbers
+    assert simple_calculator("divide", -6, -3) == 2   #test for negative numbers
+    assert simple_calculator("divide", 7.5, 2.5) == 3.0  #test for floating point numbers
+    assert simple_calculator("divide", 0, 1) == 0      #test for zero
+
+def test_division_by_zero():
+    try:
+        simple_calculator("divide", 5, 0)
+    except ValueError as e:
+        assert str(e) == "Cannot divide by zero."
+
+def test_invalid_operation():
+    try:
+        simple_calculator("modulus", 5, 3)
+    except ValueError as e:
+        assert str(e) == "Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'."
+
 
 if __name__ == "__main__":
     main()
